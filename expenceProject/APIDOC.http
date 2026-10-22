@@ -1,0 +1,91 @@
+
+#API call for expense create for admin user
+###
+POST http://127.0.0.1:8000/expense/
+Content-Type: application/json
+Authorization: Basic admin:admin
+
+{
+    "title":"zomato",
+    "amount":2100,
+    "category":"food",
+    "payment":"card"
+}
+
+
+#API call for expense create for test user
+###
+POST http://127.0.0.1:8000/expense/
+Content-Type: application/json
+Authorization: Basic test:test
+
+{
+    "title":"Ration",
+    "amount":1250,
+    "category":"food",
+    "payment":"UPI"
+}
+
+#API call for list all expenses(admin)
+###
+GET http://127.0.0.1:8000/expense
+Authorization: Basic admin:admin
+
+#API call for list all expenses(test)
+###
+GET http://127.0.0.1:8000/expense
+Authorization: Basic test:test
+
+#API call For select expense by id
+###
+GET http://127.0.0.1:8000/expense/detail/1
+Authorization: Basic admin:admin
+
+#API call for update expense by id
+###
+PUT http://127.0.0.1:8000/expense/detail/5/
+Content-Type: application/json
+Authorization: Basic admin:admin
+
+{
+  "id": 5,
+  "title": "Updated Paper Bill",
+  "amount": "350.00",
+  "created_at": "2026-10-22T20:10:25.854384Z",
+  "category": "bill",
+  "payment": "card",
+  "owner": 1
+}
+
+#API for delete expense by id
+###
+DELETE  http://127.0.0.1:8000/expense/detail/2/
+Authorization: Basic admin:admin
+
+# ----------filtering-----------
+# API call for filtering based on category and payment method
+###
+GET  http://127.0.0.1:8000/expense?category=food&payment=card
+Authorization: Basic admin:admin
+
+###
+GET  http://127.0.0.1:8000/expense?category=food
+Authorization: Basic admin:admin
+
+#---------Searching-------------
+# API call for searching based on expense title
+###
+GET http://127.0.0.1:8000/expense?search=Bill
+Authorization: Basic admin:admin
+
+#----------Ordering-----------
+#API call for ordering based on amount and created date
+###
+GET http://127.0.0.1:8000/expense?ordering=amount
+Authorization: Basic admin:admin
+
+###
+GET http://127.0.0.1:8000/expense?ordering=created_at
+Authorization: Basic admin:admin
+
+
